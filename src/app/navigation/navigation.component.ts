@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
+  navigationIcons: NavigationType[] = [];
+
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  onItemSelect(selection: string) {
+    console.log(selection);
   }
 
 }

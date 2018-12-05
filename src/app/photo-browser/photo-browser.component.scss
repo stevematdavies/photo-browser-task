@@ -1,0 +1,11 @@
+@import '../../sass/variables';
+
+.photo-browser {
+  margin-top: 15vh;
+  width: 75vw;
+  height: 65vh;
+  background-color: $color-grey-light;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1rem 2rem rgba($color-shadow, .4);
+}

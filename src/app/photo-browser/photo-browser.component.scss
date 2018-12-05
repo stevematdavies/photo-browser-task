@@ -6,6 +6,14 @@
   height: 65vh;
   background-color: $color-grey-light;
   border-radius: 12px;
-  padding: 2rem;
   box-shadow: 0 1rem 2rem rgba($color-shadow, .4);
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  grid-template-rows: repeat(3, 1fr);
+  overflow: hidden;
+
+  &__navigation {
+    grid-row: 1 / 4;
+    grid-column: 1 / 2;
+  }
 }

@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { IconsModule } from './icons/icons.module';
-import { PhotoBrowserComponent } from './photo-browser/photo-browser.component';
+import { NavigationService } from './navigation/navigation-service';
 import { NavigationComponent } from './navigation/navigation.component';
+import { PhotoBrowserComponent } from './photo-browser/photo-browser.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserModule,
     IconsModule
   ],
-  providers: [],
+  providers: [NavigationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

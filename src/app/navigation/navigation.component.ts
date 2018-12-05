@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NavigationService } from './navigation-service';
+
 
 @Component({
   selector: 'app-navigation',
@@ -10,14 +12,14 @@ export class NavigationComponent implements OnInit {
 
   navigationIcons: NavigationType[] = [];
 
-  constructor() { }
+  constructor(private navigationService: NavigationService) { }
 
   ngOnInit() {
 
   }
 
   onItemSelect(selection: string) {
-    console.log(selection);
+    this.navigationService.onSelect(selection);
   }
 
 }

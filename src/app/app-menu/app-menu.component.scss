@@ -1,0 +1,25 @@
+@import "../../sass/variables";
+
+.app-menu {
+  position: absolute;
+  top: 2.5rem;
+  right: 5em;
+  background-color: #fff;
+  padding:2rem;
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 .5rem 1rem rgba($color-shadow, .4);
+  z-index: 1001;
+  transition: all .2s;
+
+  &:hover {
+    position: absolute;
+    cursor: pointer;
+    transform: translateY(-.2rem);
+    box-shadow: 0 .5rem 1rem rgba($color-shadow, .9);
+  }
+}

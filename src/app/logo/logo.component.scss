@@ -1,0 +1,21 @@
+@import '../../sass/variables';
+
+.app-logo {
+  padding: 2rem;
+
+  &__logo {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    color: white;
+    font-size: 2rem;
+    font-weight: 100;
+    font-family: 'Roboto',sans-serif;
+
+    i {
+      margin-right: 1rem;
+      top: 2px !important;
+    }
+  }
+
+}

@@ -1,25 +1,15 @@
-@import '../../sass/variables';
+@import "../../sass/variables";
 
 .photo-browser {
-  position: relative;
-  margin-top: 15vh;
-  width: 75vw;
-  height: 65vh;
-  border-radius: 12px;
-  background-image: linear-gradient(
-    to bottom right,
-    $color-purple,
-    $color-purple-darker
-  );
-  background-size: cover;
-  box-shadow: 0 1rem 2rem rgba($color-shadow, .4);
-  overflow: hidden;
-
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-purple;
   display: grid;
   grid-template-columns: repeat(6, minmax(6rem, 1fr));
-  grid-template-rows: repeat(6, minmax(6rem, 1fr));
+  grid-template-rows: 0.5fr repeat(4, minmax(6rem, 1fr)) 0.5fr;
 
   &__header {
+    background-color: $color-purple-darker;
     width: 100%;
     grid-row: 1 / 2;
     grid-column: 1 / -1;
@@ -36,10 +26,28 @@
       grid-column: middle-start / middle-end;
     }
 
-    &--right {
+    &--right  {
       grid-column: right-start / right-end;
     }
-
   }
 
+  &__footer {
+    grid-row: 6 / 7;
+    grid-column: 1 / -1;
+    background-color: $color-purple-darker;
+    color: whitesmoke;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+
+
+    ul { list-style: none; }
+    li {
+      display: inline;
+      margin-right: 2rem;
+    }
+  }
 }

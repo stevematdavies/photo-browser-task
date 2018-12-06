@@ -1,14 +1,14 @@
 @import '../../sass/variables';
 
 .app-logo {
-  padding: 2rem;
+  margin-left: 4rem;
 
   &__logo {
     display: inline-flex;
     align-items: baseline;
     justify-content: flex-start;
     color: white;
-    font-size: 2rem;
+    font-size: 3.5rem;
     font-weight: 100;
     font-family: 'Roboto',sans-serif;
 

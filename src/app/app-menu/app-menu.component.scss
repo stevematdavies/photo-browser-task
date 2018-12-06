@@ -1,25 +1,39 @@
 @import "../../sass/variables";
+@import "../../sass/mixins";
 
 .app-menu {
-  position: absolute;
-  top: 2.5rem;
-  right: 5em;
-  background-color: #fff;
-  padding:2rem;
-  border-radius: 50%;
-  height: 4rem;
-  width: 4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 .5rem 1rem rgba($color-shadow, .4);
-  z-index: 1001;
-  transition: all .2s;
+  color: white;
+  margin-right: 10rem;
 
-  &:hover {
+  &__toggle {
+  }
+
+  &__popup {
     position: absolute;
-    cursor: pointer;
-    transform: translateY(-.2rem);
-    box-shadow: 0 .5rem 1rem rgba($color-shadow, .9);
+    border: 1px solid $color-highlight-light;
+    border-radius: 8px;
+    top: 12vh;
+    right: 1vw;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    grid-column-gap: 0.1rem;
+    grid-row-gap: 1.8rem;
+  }
+
+  &__selection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    padding: 2rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-highlight-light;
+    }
+  }
+
+  &--item {
+    width: 100%;
   }
 }

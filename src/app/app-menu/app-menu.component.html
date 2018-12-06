@@ -1,7 +1,12 @@
 <div class="app-menu">
-  <div class="app-menu__toggle"><i class="fa fa-bars fa-2x"></i></div>
 
-  <div class="app-menu__popup">
+  <a class="app-menu__toggle" (click)="onToggleMenu()">
+    <div class="app-menu__toggle--text">
+      {{toggleMenu? 'Close' : 'Menu'}}
+    </div>
+  </a>
+
+  <div *ngIf="toggleMenu" class="app-menu__popup">
     <div class="app-menu__selection">
       <div class="app-menu__list-item"><i class="fa fa-image fa-2x"></i></div>
       <div class="app-menu__list-item app-menu__selection-item--link">All images</div>

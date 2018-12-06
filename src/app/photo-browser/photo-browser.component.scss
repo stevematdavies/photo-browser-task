@@ -13,22 +13,10 @@
     width: 100%;
     grid-row: 1 / 2;
     grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: [left-start] auto [left-end middle-start] 1fr [middle-end right-start] auto [right-end];
-    justify-items: start;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    &--left {
-      grid-column: left-start / left-end;
-    }
-
-    &--middle {
-      grid-column: middle-start / middle-end;
-    }
-
-    &--right  {
-      grid-column: right-start / right-end;
-    }
   }
 
   &__footer {

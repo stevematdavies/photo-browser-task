@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppMenuComponent } from './app-menu/app-menu.component';
 import { AppComponent } from './app.component';
 import { BrowserWindowComponent } from './browser-window/browser-window.component';
 import { DataService } from './data.service';
@@ -17,7 +16,6 @@ import { ThumbViewItemComponent } from './thumb-view-item/thumb-view-item.compon
     AppComponent,
     PhotoBrowserComponent,
     LogoComponent,
-    AppMenuComponent,
     BrowserWindowComponent,
     ThumbViewItemComponent,
   ],

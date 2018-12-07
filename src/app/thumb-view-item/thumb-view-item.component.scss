@@ -15,6 +15,7 @@
   &:hover &__viz--thumb {
     transform: skew(8deg);
     box-shadow: 0 1rem 4rem $color-shadow;
+    opacity: .3;
   }
 
   &:hover &__meta--heading {

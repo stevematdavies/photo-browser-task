@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Image } from './../browser-window/models';
+import { EventService } from './../event.service';
 
 @Component({
   selector: 'app-thumb-view-item',
@@ -11,9 +12,13 @@ export class ThumbViewItemComponent implements OnInit {
 
   @Input() image: Image;
 
-  constructor() { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit() {
+  }
+
+  onImageSelect() {
+    this.eventService.imageSelected.next(this.image);
   }
 
 }

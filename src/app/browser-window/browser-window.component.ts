@@ -9,8 +9,7 @@ export class BrowserWindowComponent implements OnInit,
 OnDestroy {
 
   updateAllImagesSubscription = null;
-  updateAlbumsSubscription = null;
-  updateUsersSubscription = null;
+  onImageSelectedSubscription = null;
   dataServiceSubscription = null;
 
   images: Image[];
@@ -23,11 +22,14 @@ OnDestroy {
 
     this.onFetchImages();
 
-    this.updateAllImagesSubscription = this
-      .eventService
-      .updateAllImages
+    this.updateAllImagesSubscription = this.eventService.updateAllImages
       .subscribe(() => {
         this.onFetchImages();
+      });
+
+      this.onImageSelectedSubscription = this.eventService.imageSelected
+      .subscribe((image: Image) => {
+        this.onImageSelected(image);
       });
   }
 
@@ -42,6 +44,10 @@ OnDestroy {
       .subscribe((images: Image[]) => {
         this.images = images.slice(0, 20);
       });
+  }
+
+  onImageSelected(image: Image) {
+      console.log(image);
   }
 
 }

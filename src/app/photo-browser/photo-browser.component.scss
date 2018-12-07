@@ -3,7 +3,13 @@
 .photo-browser {
   width: 100vw;
   height: 100vh;
-  background-color: $color-purple;
+
+  background-image: url("../../assets/camera-pic.png"),
+    linear-gradient(to bottom, $color-purple, $color-purple-darkest);
+  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
   display: grid;
   grid-template-columns: repeat(6, minmax(6rem, 1fr));
   grid-template-rows: 0.5fr repeat(4, minmax(6rem, 1fr)) 0.5fr;
@@ -33,10 +39,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width:100%;
+    width: 100%;
 
-
-    ul { list-style: none; }
+    ul {
+      list-style: none;
+    }
     li {
       display: inline;
       margin-right: 2rem;

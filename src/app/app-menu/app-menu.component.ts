@@ -29,7 +29,7 @@ export class AppMenuComponent implements OnInit {
   }
 
   onSelectSort() {
-    this.eventService.doSort('id');
+    this.eventService.doSort();
   }
 
 }

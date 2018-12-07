@@ -1,11 +1,14 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppMenuComponent } from './app-menu/app-menu.component';
 import { AppComponent } from './app.component';
+import { BrowserWindowComponent } from './browser-window/browser-window.component';
+import { DataService } from './data.service';
+import { EventService } from './event.service';
 import { LogoComponent } from './logo/logo.component';
 import { PhotoBrowserComponent } from './photo-browser/photo-browser.component';
-import { BrowserWindowComponent } from './browser-window/browser-window.component';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,10 @@ import { BrowserWindowComponent } from './browser-window/browser-window.componen
     BrowserWindowComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DataService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

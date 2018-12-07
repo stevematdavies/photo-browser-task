@@ -3,7 +3,6 @@
 .photo-browser {
   width: 100vw;
   height: 100vh;
-
   background-image: url("../../assets/camera-pic.png"),
     linear-gradient(to bottom, $color-purple, $color-purple-darkest);
   background-size: 100%;
@@ -55,4 +54,36 @@
       margin-right: 2rem;
     }
   }
+}
+
+.app-logo {
+  margin-left: 2vw;
+
+  &__logo {
+    display: inline-flex;
+    align-items:center;
+    justify-content: flex-start;
+    color: white;
+
+    font-weight: 100;
+    font-family: 'Roboto',sans-serif;
+
+    &--text {
+      font-size: 2vw;
+    }
+
+    @media only screen and (max-width:100rem) {
+      &--text {
+        font-size: 4vw;
+      }
+    }
+
+    @media only screen and (max-width:60rem) {
+      &--text {
+        font-size: 6vw;
+      }
+    }
+
+  }
+
 }

@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { BrowserWindowComponent } from './browser-window/browser-window.component';
 import { DataService } from './data.service';
 import { EventService } from './event.service';
-import { LogoComponent } from './logo/logo.component';
 import { PhotoBrowserComponent } from './photo-browser/photo-browser.component';
 import { ThumbViewItemComponent } from './thumb-view-item/thumb-view-item.component';
 
@@ -15,7 +14,6 @@ import { ThumbViewItemComponent } from './thumb-view-item/thumb-view-item.compon
   declarations: [
     AppComponent,
     PhotoBrowserComponent,
-    LogoComponent,
     BrowserWindowComponent,
     ThumbViewItemComponent,
   ],

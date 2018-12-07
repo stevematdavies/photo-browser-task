@@ -22,6 +22,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(black, .3);
+    box-shadow: 0 1rem 5rem rgba(black, .3);
+    z-index: 100000001;
   }
 
   &__content {
@@ -30,6 +33,9 @@
   }
 
   &__footer {
+    border-top: 1px solid rgba(black, .3);
+    box-shadow: -0 -1rem 5rem rgba(black, .3);
+    z-index: 100000001;
     grid-row: 6 / 7;
     grid-column: 1 / -1;
     background-color: $color-purple-darker;

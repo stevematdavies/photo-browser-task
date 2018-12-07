@@ -28,8 +28,8 @@ export class AppMenuComponent implements OnInit {
     this.eventService.doFetchAlbums();
   }
 
-  onSelectSort() {
-    this.eventService.doSort();
+  onSelectFetchUsers() {
+    this.eventService.doFetchUsers();
   }
 
 }

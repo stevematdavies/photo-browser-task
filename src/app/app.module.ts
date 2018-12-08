@@ -9,6 +9,7 @@ import { DataService } from './data.service';
 import { EventService } from './event.service';
 import { PhotoBrowserComponent } from './photo-browser/photo-browser.component';
 import { ThumbViewItemComponent } from './thumb-view-item/thumb-view-item.component';
+import { ImageDetailComponent } from './image-detail/image-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ThumbViewItemComponent } from './thumb-view-item/thumb-view-item.compon
     PhotoBrowserComponent,
     BrowserWindowComponent,
     ThumbViewItemComponent,
+    ImageDetailComponent,
   ],
   imports: [
     BrowserModule,

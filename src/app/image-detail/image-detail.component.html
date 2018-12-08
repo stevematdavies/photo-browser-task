@@ -1,0 +1,15 @@
+<div *ngIf="showDisplay" class="image-display">
+  <div class="image-display__content">
+      <div class="image-display__content--close-btn" (click)="onCloseDisplay()">X</div>
+      <div class="image-display__content--left">
+         <img [src]="image.thumbnailUrl" [alt]="image.title" class="image-display__content--xthumb">
+      </div>
+      <div class="image-display__content--right">
+          <div class="image-display__content--meta">
+            <h2>
+              {{image.title}}
+            </h2>
+          </div>
+      </div>
+  </div>
+</div>

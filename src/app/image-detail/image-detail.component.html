@@ -1,15 +1,42 @@
-<div *ngIf="showDisplay" class="image-display">
-  <div class="image-display__content">
-      <div class="image-display__content--close-btn" (click)="onCloseDisplay()">X</div>
-      <div class="image-display__content--left">
-         <img [src]="image.thumbnailUrl" [alt]="image.title" class="image-display__content--xthumb">
+<div *ngIf="showDisplay" class="image-display-modal-bg">
+
+  <div class="close-btn" (click)="onCloseDisplay()">X</div>
+
+  <div class="image-display">
+
+    <header class="image-display__header">
+      <div class="image-display__header--title">{{ image.title }}</div>
+    </header>
+
+    <div class="image-display__container">
+
+      <div class="view album-view">
+        <p class="view__icon-title">
+          <i class="fa fa-info-circle"></i>
+          {{ album ? album.title : image.albumId }}
+        </p>
+
+        <div class="view-content">
+          <span (click)="onSelectUsers()" class="inline-link">
+            <i class="fa fa-share"></i> Click here to see who else owns this
+            album!
+          </span>
+        </div>
       </div>
-      <div class="image-display__content--right">
-          <div class="image-display__content--meta">
-            <h2>
-              {{image.title}}
-            </h2>
+
+      <div class="view user-view">
+        <p class="view__icon-title"><i class="fa fa-users"></i> Users</p>
+
+        <div class="view-content">
+          <div class="user-view__list-scroll">
+            <ul>
+              <li *ngFor="let user of users" (click)="onSelectUser(user.id)">
+                {{ user.name }}
+              </li>
+            </ul>
           </div>
+        </div>
       </div>
+
   </div>
 </div>

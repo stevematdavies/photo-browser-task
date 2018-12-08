@@ -18,7 +18,7 @@ export class ThumbViewItemComponent implements OnInit {
   }
 
   onImageSelect() {
-    this.eventService.imageSelected.next(this.image);
+    this.eventService.emitImageSelected(this.image);
   }
 
 }

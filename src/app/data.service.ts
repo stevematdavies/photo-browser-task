@@ -13,4 +13,21 @@ export class DataService {
   fetchImages() {
     return this.httpClient.get(this.imagesEndpoint);
   }
+
+  fetchAlbum(albumId: number) {
+    return this.httpClient.get(`${this.albumsEndpoint}/${albumId}`);
+  }
+
+  fetchUser(userId: number) {
+    return this.httpClient.get(`${this.usersEndpoint}/${userId}`);
+  }
+
+  fetchUsersForAlbum(albumId: number) {
+    return this.httpClient.get(`${this.usersEndpoint}/?albumId=${albumId}`);
+  }
+
+  fetchAlbumsForUser(userId: number) {
+    return this.httpClient.get(`${this.albumsEndpoint}/?userId=${userId}`);
+  }
+
 }

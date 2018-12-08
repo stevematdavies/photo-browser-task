@@ -8,9 +8,9 @@ import { Image } from './models';
 export class BrowserWindowComponent implements OnInit,
 OnDestroy {
 
-  updateAllImagesSubscription = null;
-  onImageSelectedSubscription = null;
-  dataServiceSubscription = null;
+  imagesSubscription = null;
+  imageSubscription = null;
+  dataSubscription = null;
 
   images: Image[];
 
@@ -19,35 +19,32 @@ OnDestroy {
     private eventService: EventService) {}
 
   ngOnInit() {
-
-    this.onFetchImages();
-
-    this.updateAllImagesSubscription = this.eventService.updateAllImages
+    this.imagesSubscription = this.eventService.imagesSelectedEvt
       .subscribe(() => {
-        this.onFetchImages();
-      });
+        this. onImagesSelected();
+    });
 
-      this.onImageSelectedSubscription = this.eventService.imageSelected
-      .subscribe((image: Image) => {
-        this.onImageSelected(image);
-      });
+    this.onSelectImages();
   }
 
   ngOnDestroy() {
-    this.updateAllImagesSubscription.unsubscribe();
+    this.imagesSubscription.unsubscribe();
+    this.images = [];
   }
 
-  onFetchImages() {
-    this.dataServiceSubscription = this
-      .dataService
-      .fetchImages()
+  onImagesSelected() {
+    this.dataSubscription = this.dataService.fetchImages()
       .subscribe((images: Image[]) => {
-        this.images = images.slice(0, 20);
+          this.images = images.slice(0, 20);
       });
   }
 
   onImageSelected(image: Image) {
-      console.log(image);
+      this.eventService.emitImageSelected(image);
+  }
+
+  onSelectImages() {
+    this.eventService.emitImagesSelected();
   }
 
 }

@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 
-import { Image } from './browser-window/models';
+import { ContextDAO, Image } from './browser-window/models';
 
 @Injectable()
 export class EventService {
@@ -10,6 +10,7 @@ export class EventService {
   @Output() albumSelectedEvt: EventEmitter<number> = new EventEmitter();
   @Output() userSelectedEvt: EventEmitter<number> = new EventEmitter();
   @Output() usersSelectedEvt: EventEmitter<void> = new EventEmitter();
+  @Output() contextSelectedEvt: EventEmitter<ContextDAO> = new EventEmitter();
 
   constructor() { }
 
@@ -31,6 +32,10 @@ export class EventService {
 
   emitAlbumSelected(id: number) {
     this.albumSelectedEvt.next(id);
+  }
+
+  emitContextSelected(contextDao: ContextDAO) {
+    this.contextSelectedEvt.next(contextDao);
   }
 
 }

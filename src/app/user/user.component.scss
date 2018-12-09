@@ -1,7 +1,6 @@
 @import '../../sass/variables';
 
 .user {
-  padding: 2rem;
   width: inherit;
   display: flex;
   justify-content: flex-start;
@@ -14,16 +13,38 @@
 }
 
 .user-detail-list {
-  flex: 1;
-  margin-right: 2rem;
+  widows: inherit;
+
+}
+
+.user-detail {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 3rem;
+  font-size: 1.4rem;
+  margin-bottom: .6rem;
+
+  &__property {
+    flex: 1;
+    margin-right: 2rem;
+  }
+
+  &__value {
+    font-weight: 100;
+  }
 }
 
 .user-detail-context {
-  height: 100%;
-  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+.contextual:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(white, .4);
 }
 
 

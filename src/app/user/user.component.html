@@ -1,39 +1,51 @@
 <div class="user">
 
   <div class="user-detail-list">
-    <div class="user__detail">
-      <div class="user_detail--property">Username</div>
-      <div class="user_detail--value">{{user.username}}</div>
+
+    <div class="user-detail">
+      <div class="user-detail__property">Username</div>
+      <div class="user-detail__value">{{user.username}}</div>
     </div>
 
-    <div class="user__detail">
-      <div class="user_detail--property">Email</div>
-      <div class="user_detail--value">{{user.email</div>
+    <div class="user-detail">
+      <div class="user-detail__property">Email</div>
+      <div class="user-detail__value">{{user.email</div>
     </div>
 
-    <div class="user__detail">
-      <div class="user_detail--property">Address</div>
-      <div class="user_detail--value">{{user.address.city}}</div>
+    <div class="user-detail contextual" (click)="onContextSelect(user.address, 'address')">
+      <div class="user-detail__property">
+        Address
+        <sup><i class="fa fa-info-circle"></i></sup>
+      </div>
+      <div class="user-detail__value">{{user.address.city}}</div>
     </div>
 
-    <div class="user__detail">
-      <div class="user_detail--property">Phone</div>
-      <div class="user_detail--value">{{user.phone}}</div>
+    <div class="user-detail">
+      <div class="user-detail__property">Phone</div>
+      <div class="user-detail__value">{{user.phone}}</div>
     </div>
 
-    <div class="user__detail">
-      <div class="user_detail--property">Website</div>
-      <div class="user_detail--value">{{user.website}}</div>
+    <div class="user-detail">
+      <div class="user-detail__property">Website</div>
+      <div class="user-detail__value">{{user.website}}</div>
     </div>
 
-    <div class="user__detail">
-      <div class="user_detail--property">Company</div>
-      <div class="user_detail--value">{{user.company.name}}</div>
+    <div class="user-detail contextual" (click)="onContextSelect(user.company, 'company')">
+      <div class="user-detail__property">
+        Company
+        <sup><i class="fa fa-info-circle"></i></sup>
+      </div>
+      <div class="user-detail__value">{{user.company.name}}</div>
     </div>
   </div>
 
-  <div class="user-detail-context">
-      Context;
+  <div *ngIf="inContext" class="user-detail-context">
+      <div class="addressContext" *ngIf="currentContextType==='address'">
+        Address
+      </div>
+      <div class="addressContext" *ngIf="currentContextType==='company'">
+        Company
+      </div>
   </div>
 
 

@@ -25,10 +25,29 @@ export interface Address {
   geo: Geo;
 }
 
+
 export interface User {
   id: number;
   name: string;
   username: string;
   email: string;
   address: Address;
+  company: Company;
 }
+
+export interface Company {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+}
+
+export interface Context {
+  shape: Image | User | Album | Company | Geo | Address;
+}
+
+export interface ContextDAO {
+  context: Context;
+  kind: string;
+}
+
+

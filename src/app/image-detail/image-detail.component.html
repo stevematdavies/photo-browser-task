@@ -3,7 +3,6 @@
   <div class="close-btn" (click)="onCloseDisplay()">X</div>
 
   <div class="image-display">
-
     <header class="image-display__header">
       <div class="image-display__header--title">{{ image.title }}</div>
     </header>
@@ -11,32 +10,51 @@
     <div class="image-display__container">
 
       <div class="view album-view">
+
         <p class="view__icon-title">
-          <i class="fa fa-info-circle"></i>
-          {{ album ? album.title : image.albumId }}
+          <i class="fa fa-folder"></i>
+          <span class="view__icon-title--text">
+            {{ album ? album.title : image.albumId }}
+          </span>
         </p>
 
         <div class="view-content">
           <span (click)="onSelectUsers()" class="inline-link">
-            <i class="fa fa-share"></i> Click here to see who else owns this
+            <i class="fa fa-users"></i> Click here to see who shares this
             album!
           </span>
         </div>
       </div>
 
-      <div class="view user-view">
-        <p class="view__icon-title"><i class="fa fa-users"></i> Users</p>
+
+      <div *ngIf="users" class="view user-view">
+
+        <p class="view__icon-title">
+          <i class="fa fa-users"></i>
+          Users
+        </p>
 
         <div class="view-content">
           <div class="user-view__list-scroll">
-            <ul>
+            <ul class="user-view__user">
               <li *ngFor="let user of users" (click)="onSelectUser(user.id)">
-                {{ user.name }}
+                <a class="user-view__user">{{ user.name }}</a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-
   </div>
+
+  <div *ngIf="user" class="context-detail">
+      <p class="view__icon-title">
+         <i class="fa fa-user"></i>
+         {{user.name}}
+     </p>
+     <div class="contex-detail__property-list">
+       <app-user [user]="user"></app-user>
+     </div>
+   </div>
 </div>
+
+

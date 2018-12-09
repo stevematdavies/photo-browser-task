@@ -1,0 +1,33 @@
+@import '../../sass/variables';
+
+.user {
+  padding: 2rem;
+  width: inherit;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-image:url('../../assets/user.png');
+  background-blend-mode:lighten;
+  background-position-x: 70%;
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+}
+
+.user-detail-list {
+  flex: 1;
+  margin-right: 2rem;
+}
+
+.user-detail-context {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+
+
+
+
+

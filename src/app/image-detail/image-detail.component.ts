@@ -73,7 +73,6 @@ OnDestroy {
     this.dataService.fetchUser(id)
       .subscribe((user: User) => {
         this.user = user;
-        console.log(user);
       });
   }
 

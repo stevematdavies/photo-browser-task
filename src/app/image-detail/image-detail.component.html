@@ -47,13 +47,18 @@
   </div>
 
   <div *ngIf="user" class="context-detail">
+
       <p class="view__icon-title">
          <i class="fa fa-user"></i>
          {{user.name}}
-     </p>
-     <div class="contex-detail__property-list">
-       <app-user [user]="user"></app-user>
-     </div>
+         <span class="view__icon-meta" (click)="onUSelectUserAlbums()">
+           <i class="fa fa-folder"></i>
+            &nbsp;See All albums for this user!
+         </span>
+      </p>
+
+     <app-user [user]="user"></app-user>
+
    </div>
 </div>
 

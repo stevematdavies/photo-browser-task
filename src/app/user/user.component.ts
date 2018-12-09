@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
-import { Context, ContextDAO, User } from './../browser-window/models';
+import { Albums, Context, ContextDAO, Geo, User } from './../browser-window/models';
+import { DataService } from './../data.service';
 import { EventService } from './../event.service';
 
 @Component({
@@ -14,36 +15,101 @@ export class UserComponent implements OnInit, OnDestroy {
   currentContext: Context = null;
   contextSubscription = null;
   currentContextType = null;
+  albumsForUserSubscription = null;
+  albumsForUserDataSubscription = null;
   inContext: Boolean = false;
+  inContextAsAlbums: Boolean = false;
+  contextProperties: any[];
+  albumsForUser: Albums;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private dataService: DataService) { }
 
   ngOnInit() {
+
+    this.eventService.clearBooleanFlagsEvt
+      .subscribe(() => {
+        this.clearAllBooleanFlags();
+      });
+
     this.contextSubscription = this.eventService.contextSelectedEvt
       .subscribe((contextDao: ContextDAO) => {
+        this.clearAllBooleanFlags();
         if (contextDao) {
          this.transformContext(contextDao);
         }
+      });
+
+      this.albumsForUserSubscription = this.eventService.albumsForUserSelectedEvt
+      .subscribe((userid: number) => {
+        this.onAlbumsForUserSelected(userid);
       });
   }
 
   ngOnDestroy() {
     this.currentContext = null;
     this.contextSubscription.unsubscribe();
-    this.inContext = false;
+    this.albumsForUserSubscription.unsubscribe();
+    this.albumsForUserDataSubscription.unsubscribe();
     this.currentContextType = null;
+    this.clearAllBooleanFlags();
+
   }
 
   onContextSelect(context: Context, kind: string ) {
-      this.eventService.emitContextSelected({context, kind});
+    this.clearAllBooleanFlags()
+    this.eventService.emitContextSelected({context, kind});
   }
 
   transformContext(contextDao: ContextDAO) {
     switch (contextDao.kind) {
       case 'address': this.currentContextType = 'address'; break;
       case 'company': this.currentContextType = 'company'; break;
+      case 'albums':  this.currentContextType = 'albums'; break;
     }
     this.currentContext = contextDao.context;
+    this.contextProperties = this.getContextProperties(this.currentContext);
     this.inContext = true;
+  }
+
+   getContextProperties(context: Context) {
+     const proparr = [];
+     for (const key of Object.keys(context)) {
+        proparr.push({key: key, val: this.assignContext(context[key])});
+     }
+     return proparr;
+   }
+
+   assignContext(context: Context) {
+     const optArray = [];
+     if (context.lat) {
+       return this.containsLocator(context);
+     }
+     return context;
+   }
+
+   containsLocator(val: Context) {
+      return this.genGeoLink({lat: val.lat, lng: val.lng});
+   }
+
+   itemKeyIsLocator(key: string) {
+      return key === 'geo';
+   }
+
+   genGeoLink(geo: Geo) {
+    return `http://maps.google.com/maps?q=${geo.lat},${geo.lng}`;
+   }
+
+   onAlbumsForUserSelected(userid: number) {
+    this.albumsForUserDataSubscription = this.dataService.fetchAlbumsForUser(userid)
+      .subscribe((albums: Albums) => {
+        this.albumsForUser = albums;
+        this.inContext = false;
+        this.inContextAsAlbums = true;
+      });
+  }
+
+  clearAllBooleanFlags() {
+    this.inContext = false;
+    this.inContextAsAlbums = false;
   }
 }

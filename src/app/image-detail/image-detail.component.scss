@@ -31,7 +31,7 @@
 
 .image-display {
   position: relative;
-  max-width: 70vw;
+  max-width: 50vw;
   max-height: 70vh;
   background-color: rgba($color-purple-darker,.6);
   border-radius: 8px;
@@ -73,8 +73,6 @@
 
 .view {
   margin: 2rem;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -85,20 +83,20 @@
     font-size: 2rem;
     text-transform: capitalize;
 
-    &--text {
-      &:before {
-        content: "Album";
-        position: absolute;
-        left: 3.8rem;
-        top: 7.5rem;
-        color: white;
-        font-size: 1.2rem;
-        font-weight: 100;
-      }
-    }
-
     &--small {
       font-size: 2rem;
+    }
+  }
+
+  &__icon-meta {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 100;
+
+    &:hover {
+      cursor: pointer;
+      font-weight: 300;
     }
   }
 }
@@ -110,12 +108,25 @@
   align-items: flex-start;
 }
 
-
 .context-detail  {
   width: 100%;
-  height: 100%;
   padding-top: 1rem;
   border-top: 1px solid rgba($color-purple, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-image:url('../../assets/user.png');
+  background-blend-mode:lighten;
+  background-position-x: 70%;
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-size: 20%;
+
+  &__property-list {
+    width: 100%;
+  }
 }
 
 .user-view {
@@ -153,3 +164,4 @@
 .view-content {
   margin-bottom: 1rem;
 }
+

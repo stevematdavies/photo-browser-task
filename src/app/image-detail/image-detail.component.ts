@@ -62,6 +62,10 @@ OnDestroy {
     this.eventService.emitAlbumSelected(this.image.albumId);
   }
 
+  onUSelectUserAlbums() {
+    this.eventService.emitAlbumsForUserSelected(this.user.id);
+  }
+
   onUsersSelected() {
     this.dataService.fetchUsersForAlbum(this.album.userId)
       .subscribe((users: User[]) => {
@@ -73,6 +77,7 @@ OnDestroy {
     this.dataService.fetchUser(id)
       .subscribe((user: User) => {
         this.user = user;
+        this.eventService.emitClearBooleanFlags();
       });
   }
 
@@ -88,6 +93,8 @@ OnDestroy {
       this.album = album;
     });
   }
+
+
 
 
   ngOnDestroy() {

@@ -35,7 +35,7 @@ OnDestroy {
   onImagesSelected() {
     this.dataSubscription = this.dataService.fetchImages()
       .subscribe((images: Image[]) => {
-          this.images = images.slice(0, 20);
+          this.images = images.slice(0, 100);
       });
   }
 

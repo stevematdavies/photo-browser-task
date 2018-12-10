@@ -20,6 +20,8 @@ OnDestroy {
   users: User[];
 
   showDisplay: Boolean = false;
+  showUserContext: Boolean = false;
+
 
   constructor(private eventService: EventService, private dataService: DataService) {}
 
@@ -54,6 +56,7 @@ OnDestroy {
 
   onSelectUsers() {
     this.eventService.emitUsersSelected();
+    this.eventService.emitClearBooleanFlags();
   }
 
   onSelectUser(id: number) {
@@ -84,6 +87,7 @@ OnDestroy {
       .subscribe((user: User) => {
         this.user = user;
         this.eventService.emitClearBooleanFlags();
+        this.showUserContext = true;
       });
   }
 
@@ -110,6 +114,7 @@ OnDestroy {
 
   onClearBooleanFlags() {
     this.users = null;
+    this.showUserContext = false;
   }
 
   onCloseDisplay() {
@@ -118,6 +123,7 @@ OnDestroy {
     this.album = null;
     this.user = null;
     this.users = null;
+    this.showUserContext = false;
   }
 
 }

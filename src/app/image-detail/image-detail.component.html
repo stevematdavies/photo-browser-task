@@ -1,10 +1,12 @@
 <div *ngIf="showDisplay" class="image-display-modal-bg">
-  <div class="close-btn" (click)="onCloseDisplay()">X</div>
+
 
   <div class="image-display">
-    <header class="image-display__header">
-      <div class="image-display__header--title">{{ image.title }}</div>
-    </header>
+
+    <div class="image-display__header">
+        <span class="image-display__header--title">{{ image.title }}</span>
+        <span class="close-btn" (click)="onCloseDisplay()">x</span>
+    </div>
 
     <div class="image-display__container">
       <div class="view album-view">
@@ -17,8 +19,13 @@
 
         <div class="view-content">
           <span (click)="onSelectUsers()" class="inline-link">
-            <i class="fa fa-users"></i> Who's using this album?</span
-          >
+            <i class="fa fa-users"></i> &nbsp;
+              <span *ngIf="!users"> Who's sharing this album?</span>
+              <span *ngIf="users && users.length > 0">
+                <strong>{{users.length}}</strong>
+                users are sharing this album
+              </span>
+          </span>
         </div>
       </div>
 
@@ -34,7 +41,7 @@
         </div>
       </div>
 
-      <app-user *ngIf="user" [user]="user"></app-user>
+      <app-user *ngIf="showUserContext" [user]="user"></app-user>
     </div>
   </div>
 </div>

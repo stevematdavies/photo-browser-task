@@ -6,7 +6,11 @@
     </div>
 
     <div class="icon-link" (click)="onUSelectUserAlbums()">
-      <i class="fa fa-folder"></i> &nbsp;See other albums for this user!
+      <i class="fa fa-folder"></i>
+      <span *ngIf="!albumsForUser">&nbsp;See other albums for this user!</span>
+      <span *ngIf="inContextAsAlbums && albumsForUser && albumsForUser.length > 0">
+        &nbsp;This user is sharing <strong>{{albumsForUser.length}}</strong> albums!
+      </span>
     </div>
   </div>
 
@@ -51,7 +55,9 @@
 
     <ul *ngIf="inContextAsAlbums" class="user-content__user-albums-list">
       <li *ngFor="let album of albumsForUser" (click)="onAlbumSelected(album.id)">
-        <span class="key">{{ album.title }}</span>
+        <span class="key">
+          <i class="fa fa-folder"></i>&nbsp;{{album.title }}
+        </span>
       </li>
     </ul>
 

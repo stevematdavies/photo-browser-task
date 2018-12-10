@@ -11,14 +11,20 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: .75rem;
+    border-bottom: 1px solid rgba($color-purple, 0.5);
   }
 }
 
 .user-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto repeat(3,1fr);
+  grid-auto-columns: max-content;
   justify-items: start;
+  max-height: 30vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   &__user-detail-list {
     grid-column: 1 / 3;
@@ -52,7 +58,6 @@
 
   &__user-albums-list,
   &__user-context-list {
-    grid-column: 3 / -1;
     list-style: none;
     font-family: "Raleway", sans-serif;
     font-weight: 100;
@@ -86,6 +91,14 @@
         font-weight: 100;
       }
     }
+  }
+
+  &__user-context-list {
+    grid-column: 3 / -1;
+  }
+
+  &__user-albums-list {
+    grid-column: 1 / -1;
   }
 }
 

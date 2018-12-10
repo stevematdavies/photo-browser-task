@@ -1,15 +1,9 @@
 <div *ngIf="showDisplay" class="image-display-modal-bg">
 
-
   <div class="image-display">
-
     <div class="image-display__header">
         <span class="image-display__header--title">
           {{ image.title }}
-          <span class="image-display__header--link">
-              <i class="fa fa-share"></i>&nbsp;
-              <a [href]="image.thumbnailUrl" target="__blank">{{image.thumbnailUrl}}</a>
-             </span>
         </span>
 
         <span class="close-btn" (click)="onCloseDisplay()">x</span>
@@ -51,4 +45,13 @@
       <app-user *ngIf="showUserContext" [user]="user"></app-user>
     </div>
   </div>
+
+  <div class="selected-image-thumb">
+      <img [src]="image.thumbnailUrl" [alt]="image.title">
+      <span class="image-display__header--link">
+          <i class="fa fa-share"></i>&nbsp;
+          <a [href]="image.thumbnailUrl" target="__blank">{{image.thumbnailUrl}}</a>
+      </span>
+  </div>
+
 </div>

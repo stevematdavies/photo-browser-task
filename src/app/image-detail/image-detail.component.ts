@@ -25,8 +25,8 @@ OnDestroy {
   ngOnInit() {
 
     this.albumSubscription = this.eventService.albumSelectedEvt
-      .subscribe(() => {
-        this.onAlbumSelected();
+      .subscribe((id: number) => {
+        this.onAlbumSelected(id);
       });
 
     this.usersSubscription = this.eventService.usersSelectedEvt
@@ -87,8 +87,8 @@ OnDestroy {
     this.onSelectAlbum();
   }
 
-  onAlbumSelected() {
-    this.dataService.fetchAlbum(this.image.albumId)
+  onAlbumSelected(id: number) {
+    this.dataService.fetchAlbum(id)
     .subscribe((album: Album) => {
       this.album = album;
     });

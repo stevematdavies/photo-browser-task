@@ -1,66 +1,80 @@
 <div class="user">
+  <div class="user__header">
+    <div class="icon-title"><i class="fa fa-user"></i> {{ user.name }}</div>
 
-  <ul class="user-detail-list">
-
-    <li class="user-detail">
-      <div class="user-detail__property">Username</div>
-      <div class="user-detail__value">{{user.username}}</div>
-    </li>
-
-    <li class="user-detail">
-      <div class="user-detail__property">Email</div>
-      <div class="user-detail__value">{{user.email}}</div>
-    </li>
-
-    <li class="user-detail contextual" (click)="onContextSelect(user.address, 'address')">
-      <div class="user-detail__property">
-        Address
-        <sup><i class="fa fa-info-circle"></i></sup>
-      </div>
-      <div class="user-detail__value">{{user.address.city}}</div>
-    </li>
-
-    <li class="user-detail">
-      <div class="user-detail__property">Phone</div>
-      <div class="user-detail__value">{{user.phone}}</div>
-    </li>
-
-    <li class="user-detail">
-      <div class="user-detail__property">Website</div>
-      <div class="user-detail__value">{{user.website}}</div>
-    </li>
-
-    <li class="user-detail contextual" (click)="onContextSelect(user.company, 'company')">
-      <div class="user-detail__property">
-        Company
-        <sup><i class="fa fa-info-circle"></i></sup>
-      </div>
-      <div class="user-detail__value">{{user.company.name}}</div>
-    </li>
-
-  </ul>
-
-  <ul *ngIf="inContextAsAlbums" class="user-albums-list">
-    <li class="user-albums__item" *ngFor="let album of albumsForUser">{{album.title}}</li>
- </ul>
-
-  <div *ngIf="inContext" class="user-detail-context">
-
-    <div class="context">
-      <ul class="context-list">
-          <li *ngFor="let item of contextProperties" class="context-list__item">
-              <span class="context-list__item--key">{{item.key}}</span>
-              <span *ngIf="!itemKeyIsLocator(item.key)"class="context-list__item--val">
-                {{item.val}}
-              </span>
-              <span *ngIf="itemKeyIsLocator(item.key)"class="context-list__item--val">
-                <a [href]="item.val" target="__blank">
-                  <i class="fa fa-compass"></i>
-                </a>
-              </span>
-          </li>
-         </ul>
-      </div>
+    <div class="inline-link" (click)="onUSelectUserAlbums()">
+      <i class="fa fa-folder"></i> &nbsp;See other albums for this user!
+    </div>
   </div>
 
+  <div class="user-content">
+
+    <ul *ngIf="!inContextAsAlbums" class="user-content__user-detail-list">
+
+      <li>
+        <div class="property">Username</div>
+        <div class="value">{{ user.username }}</div>
+      </li>
+
+      <li>
+        <div class="property">Email</div>
+        <div class="value">{{ user.email }}</div>
+      </li>
+
+      <li (click)="onContextSelect(user.address, 'address')">
+        <div class="property">
+          Address <sup><i class="fa fa-info-circle"></i></sup>
+        </div>
+        <div class="value">{{ user.address.city }}</div>
+      </li>
+
+      <li>
+        <div class="property">Phone</div>
+        <div class="value">{{ user.phone }}</div>
+      </li>
+
+      <li>
+        <div class="property">Website</div>
+        <div class="value">{{ user.website }}</div>
+      </li>
+
+      <li (click)="onContextSelect(user.company, 'company')">
+        <div class="property">
+          Company <sup><i class="fa fa-info-circle"></i></sup>
+        </div>
+        <div class="value">{{ user.company.name }}</div>
+      </li>
+    </ul>
+
+    <ul *ngIf="inContextAsAlbums" class="user-content__user-albums-list">
+      <li *ngFor="let album of albumsForUser"
+        (click)="onAlbumSelected(album.id)">
+        {{ album.title }}
+      </li>
+    </ul>
+
+    <div *ngIf="inContext" class="user-content__user-detail-context">
+      <div class="context">
+        <ul class="context-list">
+          <li *ngFor="let item of contextProperties" class="context-list__item">
+            <span class="context-list__item--key">{{ item.key }}</span>
+            <span
+              *ngIf="!itemKeyIsLocator(item.key)"
+              class="context-list__item--val"
+            >
+              {{ item.val }}
+            </span>
+            <span
+              *ngIf="itemKeyIsLocator(item.key)"
+              class="context-list__item--val"
+            >
+              <a [href]="item.val" target="__blank">
+                <i class="fa fa-compass"></i>
+              </a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

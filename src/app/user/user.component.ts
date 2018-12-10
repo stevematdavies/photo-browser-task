@@ -49,14 +49,13 @@ export class UserComponent implements OnInit, OnDestroy {
     this.currentContext = null;
     this.contextSubscription.unsubscribe();
     this.albumsForUserSubscription.unsubscribe();
-    this.albumsForUserDataSubscription.unsubscribe();
     this.currentContextType = null;
     this.clearAllBooleanFlags();
 
   }
 
   onContextSelect(context: Context, kind: string ) {
-    this.clearAllBooleanFlags()
+    this.clearAllBooleanFlags();
     this.eventService.emitContextSelected({context, kind});
   }
 
@@ -111,5 +110,13 @@ export class UserComponent implements OnInit, OnDestroy {
   clearAllBooleanFlags() {
     this.inContext = false;
     this.inContextAsAlbums = false;
+  }
+
+  onAlbumSelected(id: number) {
+    this.eventService.emitAlbumSelected(id);
+  }
+
+  onUSelectUserAlbums() {
+    this.eventService.emitAlbumsForUserSelected(this.user.id);
   }
 }

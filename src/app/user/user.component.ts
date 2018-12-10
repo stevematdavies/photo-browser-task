@@ -73,21 +73,9 @@ export class UserComponent implements OnInit, OnDestroy {
    getContextProperties(context: Context) {
      const proparr = [];
      for (const key of Object.keys(context)) {
-        proparr.push({key: key, val: this.assignContext(context[key])});
+        proparr.push({key: key, val: context[key]});
      }
      return proparr;
-   }
-
-   assignContext(context: Context) {
-     const optArray = [];
-     if (context.lat) {
-       return this.containsLocator(context);
-     }
-     return context;
-   }
-
-   containsLocator(val: Context) {
-      return this.genGeoLink({lat: val.lat, lng: val.lng});
    }
 
    itemKeyIsLocator(key: string) {
@@ -113,10 +101,16 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   onAlbumSelected(id: number) {
+    this.eventService.emitClearBooleanFlags();
     this.eventService.emitAlbumSelected(id);
   }
 
   onUSelectUserAlbums() {
     this.eventService.emitAlbumsForUserSelected(this.user.id);
+  }
+
+  onSelectUser() {
+    this.eventService.emitUserSelected(this.user.id);
+    this.clearAllBooleanFlags();
   }
 }

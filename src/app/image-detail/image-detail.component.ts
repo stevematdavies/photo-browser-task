@@ -12,6 +12,7 @@ OnDestroy {
   albumSubscription = null;
   usersSubscription = null;
   userSubscription = null;
+  clearBooleanFlagsSubscripion = null;
 
   image: Image;
   album: Album;
@@ -37,12 +38,17 @@ OnDestroy {
     this.userSubscription = this.eventService.userSelectedEvt
     .subscribe((id: number) => {
       this.onUserSelected(id);
-  });
+    });
 
     this.imageSubscription = this.eventService.imageSelectedEvt
       .subscribe((image: Image) => {
         this.onImageSelected(image);
     });
+
+    this.clearBooleanFlagsSubscripion = this.eventService.clearBooleanFlagsEvt
+    .subscribe(() => {
+      this.onClearBooleanFlags();
+  });
 
   }
 
@@ -94,14 +100,16 @@ OnDestroy {
     });
   }
 
-
-
-
   ngOnDestroy() {
     this.imageSubscription.unsubscribe();
     this.albumSubscription.unsubscribe();
     this.usersSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
+    this.clearBooleanFlagsSubscripion.unsubscribe();
+  }
+
+  onClearBooleanFlags() {
+    this.users = null;
   }
 
   onCloseDisplay() {

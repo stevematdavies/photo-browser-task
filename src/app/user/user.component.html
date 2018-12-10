@@ -1,8 +1,11 @@
 <div class="user">
   <div class="user__header">
-    <div class="icon-title"><i class="fa fa-user"></i> {{ user.name }}</div>
+    <div class="icon-title" (click)="onSelectUser()">
+      <i class="fa fa-user"></i>
+      {{ user.name }}
+    </div>
 
-    <div class="inline-link" (click)="onUSelectUserAlbums()">
+    <div class="icon-link" (click)="onUSelectUserAlbums()">
       <i class="fa fa-folder"></i> &nbsp;See other albums for this user!
     </div>
   </div>
@@ -47,34 +50,30 @@
     </ul>
 
     <ul *ngIf="inContextAsAlbums" class="user-content__user-albums-list">
-      <li *ngFor="let album of albumsForUser"
-        (click)="onAlbumSelected(album.id)">
-        {{ album.title }}
+      <li *ngFor="let album of albumsForUser" (click)="onAlbumSelected(album.id)">
+        <span class="key">{{ album.title }}</span>
       </li>
     </ul>
 
-    <div *ngIf="inContext" class="user-content__user-detail-context">
-      <div class="context">
-        <ul class="context-list">
-          <li *ngFor="let item of contextProperties" class="context-list__item">
-            <span class="context-list__item--key">{{ item.key }}</span>
-            <span
-              *ngIf="!itemKeyIsLocator(item.key)"
-              class="context-list__item--val"
-            >
-              {{ item.val }}
-            </span>
-            <span
-              *ngIf="itemKeyIsLocator(item.key)"
-              class="context-list__item--val"
-            >
-              <a [href]="item.val" target="__blank">
-                <i class="fa fa-compass"></i>
-              </a>
-            </span>
-          </li>
-        </ul>
-      </div>
-    </div>
+
+    <ul *ngIf="inContext" class="user-content__user-context-list">
+
+      <li *ngFor="let item of contextProperties">
+
+        <span class="key">{{item.key}}</span>
+
+        <span *ngIf="!itemKeyIsLocator(item.key)" class="value">
+          {{item.val}}
+        </span>
+
+        <span *ngIf="itemKeyIsLocator(item.key)"class="value">
+          <a [href]="item.val" target="__blank">
+            <i class="fa fa-compass"></i>
+          </a>
+        </span>
+      </li>
+    </ul>
+
   </div>
 </div>
+

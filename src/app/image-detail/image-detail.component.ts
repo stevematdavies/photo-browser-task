@@ -13,6 +13,7 @@ OnDestroy {
   usersSubscription = null;
   userSubscription = null;
   clearBooleanFlagsSubscripion = null;
+  imgurl = null;
 
   image: Image;
   album: Album;
@@ -93,6 +94,7 @@ OnDestroy {
 
   onImageSelected(image: Image) {
     this.image = image;
+    this.imgurl = image.thumbnailUrl;
     this.showDisplay = true;
     this.onSelectAlbum();
   }
@@ -102,6 +104,10 @@ OnDestroy {
     .subscribe((album: Album) => {
       this.album = album;
     });
+  }
+
+  onSelectAlbumLink() {
+    this.eventService.emitLinkToAlbum(this.album.id);
   }
 
   ngOnDestroy() {
@@ -115,6 +121,7 @@ OnDestroy {
   onClearBooleanFlags() {
     this.users = null;
     this.showUserContext = false;
+    this.imgurl = null;
   }
 
   onCloseDisplay() {
@@ -123,6 +130,7 @@ OnDestroy {
     this.album = null;
     this.user = null;
     this.users = null;
+    this.imgurl = null;
     this.showUserContext = false;
   }
 

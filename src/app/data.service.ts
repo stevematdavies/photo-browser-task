@@ -30,4 +30,12 @@ export class DataService {
     return this.httpClient.get(`${this.albumsEndpoint}/?userId=${userId}`);
   }
 
+  linkToAlbum(id: number) {
+    window.location.href = `${this.albumsEndpoint}/${id}`;
+  }
+
+  linkToImage(id: number) {
+    window.location.href = `${this.imagesEndpoint}/${id}`;
+  }
+
 }

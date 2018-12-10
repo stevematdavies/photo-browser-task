@@ -21,7 +21,7 @@ OnDestroy {
   ngOnInit() {
     this.imagesSubscription = this.eventService.imagesSelectedEvt
       .subscribe(() => {
-        this. onImagesSelected();
+        this.onImagesSelected();
     });
 
     this.onSelectImages();
@@ -35,7 +35,8 @@ OnDestroy {
   onImagesSelected() {
     this.dataSubscription = this.dataService.fetchImages()
       .subscribe((images: Image[]) => {
-          this.images = images.slice(0, 100);
+          this.images = images.slice(0, 10);
+          this.eventService.emitUpdateImagesCount(this.images.length);
       });
   }
 

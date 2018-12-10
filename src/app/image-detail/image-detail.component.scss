@@ -64,7 +64,23 @@
     padding-bottom: 0.2rem;
 
     &--title {
+      display: block;
       border-bottom: 1px solid rgba($color-purple, 0.5);
+    }
+
+    &--link {
+      text-transform: lowercase;
+      display: block;
+      font-size: 1rem;
+      a {
+        text-decoration: none;
+        color: white;
+        font-weight: 100;
+        transition: all .2s;
+        &:hover {
+          font-weight: 300;
+        }
+      }
     }
   }
 
@@ -93,6 +109,10 @@
   font-size: 2rem;
   text-transform: capitalize;
   margin-bottom: .4rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   &--small {
     font-size: 2rem;

@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 
 import { ContextDAO, Image } from './browser-window/models';
+import { DataService } from './data.service';
 
 @Injectable()
 export class EventService {
@@ -13,8 +14,9 @@ export class EventService {
   @Output() userSelectedEvt: EventEmitter<number> = new EventEmitter();
   @Output() usersSelectedEvt: EventEmitter<void> = new EventEmitter();
   @Output() contextSelectedEvt: EventEmitter<ContextDAO> = new EventEmitter();
+  @Output() imagesCountUpdatedEvt: EventEmitter<number> = new EventEmitter();
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   emitUsersSelected() {
     this.usersSelectedEvt.next();
@@ -46,6 +48,18 @@ export class EventService {
 
   emitClearBooleanFlags() {
     this.clearBooleanFlagsEvt.next();
+  }
+
+  emitUpdateImagesCount(count: number) {
+    this.imagesCountUpdatedEvt.next(count);
+  }
+
+  emitLinkToAlbum(id: number) {
+    this.dataService.linkToAlbum(id);
+  }
+
+  emitLinkToImage(id: number) {
+    this.dataService.linkToImage(id);
   }
 
 }

@@ -10,8 +10,9 @@ OnDestroy {
 
   imagesSubscription = null;
   imageSubscription = null;
+  imageRangeSubscription = null;
   dataSubscription = null;
-
+  imgLimit = 10;
   images: Image[];
 
   constructor(
@@ -20,32 +21,49 @@ OnDestroy {
 
   ngOnInit() {
     this.imagesSubscription = this.eventService.imagesSelectedEvt
-      .subscribe(() => {
-        this.onImagesSelected();
+      .subscribe((limit) => {
+        this.onImagesSelected(limit);
     });
 
-    this.onSelectImages();
+    this.imageRangeSubscription = this.eventService.imagedRangeSelectedEvt
+      .subscribe((range: {from: number, to: number}) => {
+        this.onImageRangeSelected(range);
+      });
+
+
+
+    this.onSelectImages(this.imgLimit);
   }
 
   ngOnDestroy() {
     this.imagesSubscription.unsubscribe();
+    this.imageRangeSubscription.unsubscribe();
     this.images = [];
+    this.imgLimit = 10;
   }
 
-  onImagesSelected() {
-    this.dataSubscription = this.dataService.fetchImages()
+  onImagesSelected(limit: number) {
+    this.dataSubscription = this.dataService.fetchImages(limit)
       .subscribe((images: Image[]) => {
-          this.images = images.slice(0, 10);
+          this.images = images;
           this.eventService.emitUpdateImagesCount(this.images.length);
       });
+  }
+
+  onImageRangeSelected(range: {from: number, to: number}) {
+    this.dataSubscription = this.dataService.fetchImageRange(range)
+    .subscribe((images: Image[]) => {
+        this.images = images;
+        this.eventService.emitUpdateImagesCount(this.images.length);
+    });
   }
 
   onImageSelected(image: Image) {
       this.eventService.emitImageSelected(image);
   }
 
-  onSelectImages() {
-    this.eventService.emitImagesSelected();
+  onSelectImages(limit: number) {
+    this.eventService.emitImagesSelected(limit);
   }
 
 }

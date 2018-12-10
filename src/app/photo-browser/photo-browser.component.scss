@@ -21,9 +21,51 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(black, .3);
-    box-shadow: 0 1rem 5rem rgba(black, .3);
+    border-bottom: 1px solid rgba(black, 0.3);
+    box-shadow: 0 1rem 5rem rgba(black, 0.3);
     z-index: 100000001;
+
+    &__sub-menu {
+      margin-top: 1rem;
+      color: white;
+      margin-right: 2rem;
+      font-weight: 100;
+      font-size: 1.4rem;
+      display: flex;
+      justify-content: flex-end;
+
+      .option-item {
+        margin-right: 1rem;
+        transition: scale .3s;
+        &:not(:last-child) {
+          padding-right: .5rem;
+          border-right: 1px solid rgba(white, .5);
+        }
+
+        &:hover {
+          cursor: pointer;
+          font-weight: 300;
+          transform: scale(1.25);
+        }
+      }
+
+      &--menu {
+        display: flex;
+        align-items: center;
+      }
+
+      &--option-list {
+        display: inline-flex;
+        justify-content: space-beween;
+        align-items: center;
+        list-style: none;
+        margin-right: 2rem;
+
+
+      }
+
+
+    }
   }
 
   &__content {
@@ -32,8 +74,8 @@
   }
 
   &__footer {
-    border-top: 1px solid rgba(black, .3);
-    box-shadow: -0 -1rem 5rem rgba(black, .3);
+    border-top: 1px solid rgba(black, 0.3);
+    box-shadow: -0 -1rem 5rem rgba(black, 0.3);
     z-index: 100000001;
     grid-row: 6 / 7;
     grid-column: 1 / -1;
@@ -58,39 +100,8 @@
 
 .app-logo {
   margin-left: 2vw;
-
-  &__logo {
-    display: inline-flex;
-    align-items:center;
-    justify-content: flex-start;
-    color: white;
-
-    font-weight: 100;
-    font-family: 'Roboto',sans-serif;
-
-    &--text {
-      font-size: 2vw;
-    }
-
-    &--imgcount {
-      color: white;
-      margin-right: 2rem;
-      font-weight: 100;
-      font-size: 1.4rem;
-    }
-
-    @media only screen and (max-width:100rem) {
-      &--text {
-        font-size: 4vw;
-      }
-    }
-
-    @media only screen and (max-width:60rem) {
-      &--text {
-        font-size: 6vw;
-      }
-    }
-
-  }
-
+  color: white;
+  font-weight: 100;
+  font-family: "Roboto", sans-serif;
+  font-size: 4rem;
 }

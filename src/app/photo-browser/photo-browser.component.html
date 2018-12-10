@@ -1,18 +1,39 @@
 <app-image-detail></app-image-detail>
 <div class="photo-browser">
+
   <div class="photo-browser__header">
-    <div class="app-logo">
-      <span class="app-logo__logo">
-        <span class="app-logo__logo--text">
-          <strong>Photo</strong> | Browser
-        </span>
-      </span>
+
+    <div class="photo-browser__header--item app-logo">
+        <strong>Photo</strong> | Browser
     </div>
-    <span
-        class="app-logo__logo--imgcount">
-        <i class="fa fa-photo"></i>&nbsp; = &nbsp;
-        <strong>({{imagesCount}})</strong>
-  </span>
+
+    <div class="photo-browser__header__sub-menu">
+
+        <div class="photo-browser__header__sub-menu--menu">
+
+          <ul class="photo-browser__header__sub-menu--option-list">
+            <li class="option-item" (click)="onSelectImageRange(0,10)">0..10</li>
+            <li class="option-item" (click)="onSelectImageRange(10,50)">10..50</li>
+            <li class="option-item" (click)="onSelectImageRange(0,50)">0..50</li>
+            <li class="option-item" (click)="onSelectImageRange(50,100)">50..100</li>
+            <li class="option-item" (click)="onSelectImageRange(100,500)">100..500</li>
+            <li class="option-item" (click)="onSelectImageRange(500,1000)">500..1000</li>
+            <li class="option-item" (click)="onSelectImageRange(1000,-1)">1000...</li>
+            <li class="option-item" (click)="onSelectImages(-1)">all</li>
+          </ul>
+
+        </div>
+
+        <div class="photo-browser__header__sub-menu--info">
+          <span>
+            <i class="fa fa-photo"></i>&nbsp; = &nbsp;
+            <strong>({{imagesCount}})</strong>
+          </span>
+        </div>
+
+    </div>
+
+
   </div>
 
   <div class="photo-browser__content">

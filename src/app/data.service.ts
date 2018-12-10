@@ -10,8 +10,16 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) { }
 
-  fetchImages() {
-    return this.httpClient.get(this.imagesEndpoint);
+  fetchImages(limit: number) {
+    const q = limit > 0 ? `?_limit=${limit}` : '';
+    return this.httpClient.get(`${this.imagesEndpoint}${q}`);
+  }
+
+  fetchImageRange(range) {
+    const qStart = `?_start=${range.from}`;
+    const qEnd = range.to > 0 && range.to > range.from ? `?&_end=${range.to}` : '';
+    const q = `${qStart}${qEnd}`;
+    return this.httpClient.get(`${this.imagesEndpoint}${q}`);
   }
 
   fetchAlbum(albumId: number) {

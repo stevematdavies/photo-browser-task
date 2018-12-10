@@ -65,7 +65,11 @@ OnDestroy {
   }
 
   onSelectImages() {
-    this.eventService.emitImagesSelected();
+    this.eventService.emitImagesSelected(-1);
+  }
+
+  onSelectImageRange(from: number, to: number) {
+    this.eventService.emitImageRangeSelected(from, to);
   }
 
   onSelectAlbum() {

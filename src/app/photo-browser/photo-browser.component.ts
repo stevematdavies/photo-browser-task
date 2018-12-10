@@ -23,6 +23,14 @@ export class PhotoBrowserComponent implements OnInit, OnDestroy {
       this.eventService.emitUpdateImagesCount(this.imagesCount);
   }
 
+  onSelectImageRange(from: number, to: number) {
+      this.eventService.emitImageRangeSelected(from, to);
+  }
+
+  onSelectImages(limit: number) {
+    this.eventService.emitImagesSelected(limit);
+  }
+
   ngOnDestroy() {
     this.imagesCountSubscription.unsubscribe();
     this.imagesCount = 0;

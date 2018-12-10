@@ -6,9 +6,10 @@ import { DataService } from './data.service';
 @Injectable()
 export class EventService {
 
-  @Output() imagesSelectedEvt: EventEmitter<void> = new EventEmitter();
+  @Output() imagesSelectedEvt: EventEmitter<number> = new EventEmitter();
   @Output() clearBooleanFlagsEvt: EventEmitter<void> = new EventEmitter();
   @Output() imageSelectedEvt: EventEmitter<Image> = new EventEmitter();
+  @Output() imagedRangeSelectedEvt: EventEmitter<{from: number, to: number}> = new EventEmitter();
   @Output() albumSelectedEvt: EventEmitter<number> = new EventEmitter();
   @Output() albumsForUserSelectedEvt: EventEmitter<number> = new EventEmitter();
   @Output() userSelectedEvt: EventEmitter<number> = new EventEmitter();
@@ -30,8 +31,8 @@ export class EventService {
     this.imageSelectedEvt.next(image);
   }
 
-  emitImagesSelected() {
-    this.imagesSelectedEvt.next();
+  emitImagesSelected(limit: number) {
+    this.imagesSelectedEvt.next(limit);
   }
 
   emitAlbumSelected(id: number) {
@@ -60,6 +61,10 @@ export class EventService {
 
   emitLinkToImage(id: number) {
     this.dataService.linkToImage(id);
+  }
+
+  emitImageRangeSelected(from: number, to: number) {
+    this.imagedRangeSelectedEvt.next({from, to});
   }
 
 }

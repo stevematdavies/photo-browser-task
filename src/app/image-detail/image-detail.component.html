@@ -1,57 +1,65 @@
 <div *ngIf="showDisplay" class="image-display-modal-bg">
 
   <div class="image-display">
-    <div class="image-display__header">
-        <span class="image-display__header--title">
-          {{ image.title }}
-        </span>
 
-        <span class="close-btn" (click)="onCloseDisplay()">x</span>
-    </div>
+    <div class="image-display-grid">
 
-    <div class="image-display__container">
-      <div class="view album-view">
-        <p class="icon-title">
-          <i class="fa fa-folder"></i>
-          <span class="icon-title--text">
-            {{ album ? album.title : image.albumId }}
-          </span>
-        </p>
-
-        <div class="view-content">
-          <span (click)="onSelectUsers()" class="inline-link">
-            <i class="fa fa-users"></i> &nbsp;
-              <span *ngIf="!users"> Who's sharing this album?</span>
-              <span *ngIf="users && users.length > 0">
-                <strong>{{users.length}}</strong>
-                users are sharing this album
-              </span>
-          </span>
-        </div>
+      <div class="image-display-grid__item--header">
+        <div class="image-display-grid__title"> {{ image.title }} </div>
+        <div class="image-display-grid__close-btn" (click)="onCloseDisplay()">x</div>
       </div>
 
-      <div *ngIf="users" class="view users-view">
-        <div class="view-content">
-          <div class="users-view__list-scroll">
-            <ul class="users-view__user">
-              <li *ngFor="let user of users" (click)="onSelectUser(user.id)">
-                <a class="users-view__user">{{ user.name }}</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="image-display-grid__item--thumb-view">
+        <img [src]="image.thumbnailUrl" alt="image.title">
       </div>
 
-      <app-user *ngIf="showUserContext" [user]="user"></app-user>
+      <div class="image-display-grid__item--album-view">
+
+        <div class="image-display-grid__item--album-view__wrapper">
+
+            <div class="image-display-grid__title--md">
+                <i class="fa fa-folder"></i>&nbsp;
+                {{ album ? album.title : image.albumId }}
+              </div>
+      
+              <div class="image-display-grid__title--sm hoverable" (click)="onSelectUsers()">
+                <i class="fa fa-users"></i>&nbsp;
+                <span *ngIf="!users"> Who's sharing this album?</span>
+                <span *ngIf="users && users.length > 0">
+                  <strong>{{users.length}}</strong>
+                  users are sharing this album
+                </span>
+              </div>
+
+        </div>
+
+       
+
+      </div>
+
+      <div *ngIf="users" class="image-display-grid__item--users-view">
+        <ul class="image-display-grid__item--users-view__list">
+          <li *ngFor="let user of users" (click)="onSelectUser(user.id)">
+            <a class="image-display-grid__item--users-view__user hoverable">{{ user.name }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="showUserContext" class="image-display-grid__item--user-view">
+        <app-user [user]="user"></app-user>
+      </div>
+
     </div>
   </div>
 
-  <div class="selected-image-thumb">
-      <img [src]="image.thumbnailUrl" [alt]="image.title">
-      <span class="image-display__header--link">
-          <a [href]="image.thumbnailUrl" target="__blank">
-              <i class="fa fa-share"></i>&nbsp;{{image.thumbnailUrl}}</a>
-      </span>
-  </div>
+
+
+  <!-- <div class="selected-image-thumb">
+    <img [src]="image.thumbnailUrl" [alt]="image.title">
+    <span class="image-display__header--link">
+      <a [href]="image.thumbnailUrl" target="__blank">
+        <i class="fa fa-share"></i>&nbsp;{{image.thumbnailUrl}}</a>
+    </span>
+  </div> -->
 
 </div>

@@ -1,9 +1,7 @@
 <div class="browser-window">
   <div class="browser-window__main">
     <div class="browser-window__image-viewer">
-      <app-thumb-view-item
-        *ngFor="let image of images"[image]="image">
-      </app-thumb-view-item>
+      <app-thumb-view-item *ngFor="let image of images"[image]="image"></app-thumb-view-item>
     </div>
   </div>
 </div>

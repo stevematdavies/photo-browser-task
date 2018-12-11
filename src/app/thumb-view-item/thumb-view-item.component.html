@@ -1,11 +1,3 @@
-<div class="thumb-view" (click)="onImageSelect()">
-  <img
-    [src]="image.thumbnailUrl"
-    [alt]="image.title"
-    class="thumb-view__viz--thumb"
-  />
-
-  <div class="thumb-view__meta">
-    <h6 class="thumb-view__meta--heading">{{ image.title }}</h6>
-  </div>
-</div>
+<figure class="thumb-view" (click)="onImageSelect()">
+  <img [src]="image.thumbnailUrl" [alt]="image.title" class="thumb-view__img"/>
+</figure>

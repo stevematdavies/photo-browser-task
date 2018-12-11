@@ -1,11 +1,13 @@
 <div class="user">
+
   <div class="user__header">
-    <div class="icon-title" (click)="onSelectUser()">
+    
+    <div class="user__header--icon-title" (click)="onSelectUser()">
       <i class="fa fa-user"></i>
       {{ user.name }}
     </div>
 
-    <div class="icon-link" (click)="onUSelectUserAlbums()">
+    <div class="user__header--icon-title--md" (click)="onUSelectUserAlbums()">
       <i class="fa fa-folder"></i>
       <span *ngIf="!albumsForUser">&nbsp;See other albums for this user!</span>
       <span *ngIf="inContextAsAlbums && albumsForUser && albumsForUser.length > 0">
@@ -14,72 +16,69 @@
     </div>
   </div>
 
-  <div class="user-content">
+  <div *ngIf="!inContextAsAlbums" class="user__detail-list">
 
-    <ul *ngIf="!inContextAsAlbums" class="user-content__user-detail-list">
+    <div class="user__detail-list--item">
+      <div class="property">Username</div>
+      <div class="value">{{ user.username }}</div>
+    </div>
 
-      <li>
-        <div class="property">Username</div>
-        <div class="value">{{ user.username }}</div>
-      </li>
+    <div class="user__detail-list--item">
+      <div class="property">Email</div>
+      <div class="value">{{ user.email }}</div>
+    </div>
 
-      <li>
-        <div class="property">Email</div>
-        <div class="value">{{ user.email }}</div>
-      </li>
+    <div class="user__detail-list--item hoverable" (click)="onContextSelect(user.address, 'address')">
+      <div class="property">
+        Address <sup><i class="fa fa-info-circle"></i></sup>
+      </div>
+      <div class="value">{{ user.address.city }}</div>
+    </div>
 
-      <li (click)="onContextSelect(user.address, 'address')">
-        <div class="property">
-          Address <sup><i class="fa fa-info-circle"></i></sup>
-        </div>
-        <div class="value">{{ user.address.city }}</div>
-      </li>
+    <div class="user__detail-list--item">
+      <div class="property">Phone</div>
+      <div class="value">{{ user.phone }}</div>
+    </div>
 
-      <li>
-        <div class="property">Phone</div>
-        <div class="value">{{ user.phone }}</div>
-      </li>
+    <div class="user__detail-list--item">
+      <div class="property">Website</div>
+      <div class="value">{{ user.website }}</div>
+    </div>
 
-      <li>
-        <div class="property">Website</div>
-        <div class="value">{{ user.website }}</div>
-      </li>
-
-      <li (click)="onContextSelect(user.company, 'company')">
-        <div class="property">
-          Company <sup><i class="fa fa-info-circle"></i></sup>
-        </div>
-        <div class="value">{{ user.company.name }}</div>
-      </li>
-    </ul>
-
-    <ul *ngIf="inContextAsAlbums" class="user-content__user-albums-list">
-      <li *ngFor="let album of albumsForUser" (click)="onAlbumSelected(album.id)">
-        <span class="key">
-          <i class="fa fa-folder"></i>&nbsp;{{album.title }}
-        </span>
-      </li>
-    </ul>
-
-
-    <ul *ngIf="inContext" class="user-content__user-context-list">
-
-      <li *ngFor="let item of contextProperties">
-
-        <span class="key">{{item.key}}</span>
-
-        <span *ngIf="!itemKeyIsLocator(item.key)" class="value">
-          {{item.val}}
-        </span>
-
-        <span *ngIf="itemKeyIsLocator(item.key)"class="value">
-          <a [href]="item.val" target="__blank">
-            <i class="fa fa-compass"></i>
-          </a>
-        </span>
-      </li>
-    </ul>
-
+    <div class="user__detail-list--item hoverable" (click)="onContextSelect(user.company, 'company')">
+      <div class="property">
+        Company <sup><i class="fa fa-info-circle"></i></sup>
+      </div>
+      <div class="value">{{ user.company.name }}</div>
+    </div>
+  
   </div>
-</div>
 
+  <div *ngIf="inContextAsAlbums" class="user__album-list">
+    <div *ngFor="let album of albumsForUser" 
+          (click)="onAlbumSelected(album.id)" 
+          class="user__album-list--item hoverable">
+        <i class="fa fa-folder"></i>&nbsp;{{album.title}}
+    </div>
+  </div>
+
+  <div *ngIf="inContext" class="user__context-list">
+
+    <div *ngFor="let item of contextProperties" class="user__context-list--item">
+
+      <span class="property">{{item.key}}</span>
+
+      <span *ngIf="!itemKeyIsLocator(item.key)" class="value">
+        {{item.val}}
+      </span>
+
+      <span *ngIf="itemKeyIsLocator(item.key)" class="value hoverable">
+        <a [href]="item.val" target="__blank">
+          <i class="fa fa-compass"></i>
+        </a>
+      </span>
+   
+    </div>
+  </div>
+
+</div>

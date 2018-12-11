@@ -21,4 +21,9 @@ export class ThumbViewItemComponent implements OnInit {
     this.eventService.emitImageSelected(this.image);
   }
 
+  getRandom(){
+    const seed = (Math.floor(Math.random() * 9) + 1)* 10;  
+    return `${seed}%`;
+  }
+
 }

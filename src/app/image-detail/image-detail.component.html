@@ -10,30 +10,27 @@
       </div>
 
       <div class="image-display-grid__item--thumb-view">
-        <img [src]="image.thumbnailUrl" alt="image.title">
-      </div>
 
-      <div class="image-display-grid__item--album-view">
-
-        <div class="image-display-grid__item--album-view__wrapper">
-
-            <div class="image-display-grid__title--md">
-                <i class="fa fa-folder"></i>&nbsp;
-                {{ album ? album.title : image.albumId }}
-              </div>
-      
-              <div class="image-display-grid__title--sm hoverable" (click)="onSelectUsers()">
-                <i class="fa fa-users"></i>&nbsp;
-                <span *ngIf="!users"> Who's sharing this album?</span>
-                <span *ngIf="users && users.length > 0">
-                  <strong>{{users.length}}</strong>
-                  users are sharing this album
-                </span>
-              </div>
-
+        <div class="image-display-grid__item--thumb-view__head
+          image-display-grid__title--md">
+          <i class="fa fa-folder"></i>&nbsp;
+          {{ album ? album.title : image.albumId }}
         </div>
 
-       
+        <img [src]="image.thumbnailUrl" alt="image.title">
+
+        <div class="image-display-grid__item--thumb-view__wrapper">
+
+          <div class="image-display-grid__title--sm hoverable" (click)="onSelectUsers()">
+            <i class="fa fa-users"></i>&nbsp;
+            <span *ngIf="!users"> Who's sharing this album?</span>
+            <span *ngIf="users && users.length > 0">
+              <strong>{{users.length}}</strong>
+              users are sharing this album
+            </span>
+          </div>
+
+        </div>
 
       </div>
 
@@ -51,15 +48,5 @@
 
     </div>
   </div>
-
-
-
-  <!-- <div class="selected-image-thumb">
-    <img [src]="image.thumbnailUrl" [alt]="image.title">
-    <span class="image-display__header--link">
-      <a [href]="image.thumbnailUrl" target="__blank">
-        <i class="fa fa-share"></i>&nbsp;{{image.thumbnailUrl}}</a>
-    </span>
-  </div> -->
 
 </div>

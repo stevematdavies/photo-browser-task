@@ -49,8 +49,8 @@
   <div class="selected-image-thumb">
       <img [src]="image.thumbnailUrl" [alt]="image.title">
       <span class="image-display__header--link">
-          <i class="fa fa-share"></i>&nbsp;
-          <a [href]="image.thumbnailUrl" target="__blank">{{image.thumbnailUrl}}</a>
+          <a [href]="image.thumbnailUrl" target="__blank">
+              <i class="fa fa-share"></i>&nbsp;{{image.thumbnailUrl}}</a>
       </span>
   </div>
 
